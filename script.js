@@ -5,9 +5,12 @@ var mapsapi = 'AIzaSyBgbI_nNqjw1HM7PUPOw_0a37Cy5sVEuaE'
 var map;
 var db = firebase.database();
 
+
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.283, lng: -123.111},
+        styles:mapstyle,
         zoom: 16
     });
 
