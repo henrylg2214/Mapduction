@@ -7,6 +7,19 @@
 </head>
 <body>
 <div id="map"></div>
+
+<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDYl9IWrY78xscUoGcHq6EoA-T1I8iiYLo",
+        authDomain: "mapduction.firebaseapp.com",
+        databaseURL: "https://mapduction.firebaseio.com",
+        storageBucket: "mapduction.appspot.com",
+        messagingSenderId: "252393339795"
+    };
+    firebase.initializeApp(config);
+</script>
 <script src="script.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgbI_nNqjw1HM7PUPOw_0a37Cy5sVEuaE&callback=initMap"></script>
 

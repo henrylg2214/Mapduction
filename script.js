@@ -3,12 +3,7 @@
  */
 var mapsapi = 'AIzaSyBgbI_nNqjw1HM7PUPOw_0a37Cy5sVEuaE'
 var map;
-var bounds = {
-    north: 49.282,
-    south: 49.281,
-    east: -123.114,
-    west: -123.115
-}
+var db = firebase.database();
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -17,23 +12,46 @@ function initMap() {
     });
 
     google.maps.event.addListener(map, 'click', function (event) {
-        console.log(event.latLng.lat())
+        console.log(event.latLng.lat());
+        drawTarget([
+            event.latLng.lat(),
+            event.latLng.lng()
+        ]);
         console.log(event.latLng.lng())
-    })
-    rectangle = new google.maps.Rectangle({
-        bounds: bounds,
-        editable: true,
-        draggable: true
     });
 
-    rectangle.setMap(map);
+    function drawRect(bounds) {
 
-    google.maps.event.addListener(rectangle, 'click', function (event) {
-alert ('kapow')
-    })
+        rectangle = new google.maps.Rectangle({
+            bounds: bounds,
+            editable: true,
+            draggable: true
+        });
 
+        rectangle.setMap(map);
+    }
 
+    //google.maps.event.addListener(rectangle, 'click', function (event) {
 
+    // })
+    function storeMap(coords) {
+        firebase.database().ref('rects/').set({
+            rect: coords
+        });
+    }
+
+    function drawTarget(coords) {
+        var lat = coords[0];
+        var lng = coords[1];
+        var bounds = {
+            north: lat + .0006,
+            south: lat - .0006,
+            east: lng + .001,
+            west: lng - .001
+        };
+        drawRect(bounds);
+        storeMap(bounds);
+    }
 
 
 }
