@@ -55,6 +55,21 @@ function initMap() {
         drawRect(bounds);
         storeMap(bounds);
     }
+    function pickteam(choice){
 
+        var team ={}
+        team[choice]='test'
+
+        firebase.database().ref('players/').set(team);
+    }
+
+$ ('.teamselect').click(function(event){
+    console.log(event.target)
+    $(event.target).siblings().removeClass('active')
+    $(event.target).addClass('active')
+    var choice=event.target.getAttribute('data-team')
+    pickteam(choice)
+
+})
 
 }
