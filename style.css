@@ -17,6 +17,14 @@ html, body {
 
 }
 
+.reset{
+    position: absolute;
+    padding: 20px;
+    background: yellow;
+    top: 10px;
+    right: 10px;
+}
+
 .red{
     background: red;
     width: 50%;
